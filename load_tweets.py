@@ -211,7 +211,7 @@ def insert_tweet(connection,tweet):
             'id_tweets':tweet['id'],
             'id_users':tweet['user']['id'],
             'created_at':tweet.get('created_at', None),
-            'in_reply_status_id':tweet.get('in_reply_status_id', None),
+            'in_reply_to_status_id':tweet.get('in_reply_to_status_id', None),
             'in_reply_to_user_id':tweet.get('in_reply_to_user_id', None),
             'quoted_status_id':tweet.get('quoted_status_id', None),
             'geo':None,
