@@ -289,7 +289,7 @@ def insert_tweet(connection,tweet):
             
             connection.execute(sql, {
                 'id_tweets':tweet['id'],
-                'id_users':tweet['id']
+                'id_users':mention['id']
                 })
 
         ########################################
