@@ -282,7 +282,7 @@ def insert_tweet(connection,tweet):
 
             # insert into tweet_mentions
             sql=sqlalchemy.sql.text('''
-            INSERT INNTO tweet_mentions (id_tweets, id_users)
+            INSERT INTO tweet_mentions (id_tweets, id_users)
             VALUES (:id_tweets, :id_users)
             ON CONFLICT DO NOTHING
                 ''')
