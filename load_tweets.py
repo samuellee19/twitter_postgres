@@ -192,7 +192,6 @@ def insert_tweet(connection,tweet):
             INSERT INTO users(id_users)
             VALUES(:id_users)
             ON CONFLICT DO NOTHING
-            RETURNING in_reply_to_user_id
                 ''')
 
         # insert the tweet
