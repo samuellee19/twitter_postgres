@@ -203,7 +203,7 @@ def insert_tweet(connection,tweet):
             place_name, country_code, state_code, lang, text, source)
         VALUES (:id_tweets, :id_users, :created_at, :in_reply_to_status_id,
             :in_reply_to_user_id, :quoted_status_id, :geo, :retweet_count,
-            :favorite_count, :quote_count, :favorite_count, :withheld_copyright,
+            :quote_count, :favorite_count, :withheld_copyright,
             :withheld_in_countries, :place_name, :country_code, :state_code, :lang, :text, :source
             ''')
         
