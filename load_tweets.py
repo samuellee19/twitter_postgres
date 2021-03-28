@@ -197,35 +197,35 @@ def insert_tweet(connection,tweet):
 
         # insert the tweet
         sql=sqlalchemy.sql.text(f'''
-        INSERT INTO tweets (id_tweets, id_users, created_at, in_reply_to_status_id,
-            in_reply_to_user_id, quoted_status_id, geo, retweet_count,
-            quote_count, favorite_count, withheld_copyright, withheld_in_countries,
-            place_name, country_code, state_code, lang, text, source)
+        INSERT INTO tweets (id_tweets, id_users, created_at, in_reply_to_status_id, 
+            in_reply_to_user_id, quoted_status_id, retweet_count, favorite_count, 
+            quote_count, withheld_copyright, withheld_in_countries, source, text,
+            country_code, state_code, lang, place_name, geo)
         VALUES (:id_tweets, :id_users, :created_at, :in_reply_to_status_id,
-            :in_reply_to_user_id, :quoted_status_id, :geo, :retweet_count,
-            :quote_count, :favorite_count, :withheld_copyright,
-            :withheld_in_countries, :place_name, :country_code, :state_code, :lang, :text, :source
+            :in_reply_to_user_id, :quoted_status_id, :retweet_count,
+            :favorite_count, :quote_count, :withheld_copyright,
+            :withheld_in_countries, :source, :text, :country_code, :state_code,
+            :lang, :place_name, :geo)
             ''')
-        
         connection.execute(sql, {
             'id_tweets':tweet['id'],
+            'withheld_copyright':tweet.get('withheld_copyright',None),
+            'withheld_in_countries':tweet.get('withheld_in_countries',None),
+            'quote_count':tweet.get('quote_count',None),
+            'favorite_count':tweet.get('favorite_count',None),
+            'retweet_count':tweet.get('retweet_count',None),
+            'quoted_status_id':tweet.get('quoted_status_id',None),
+            'in_reply_to_user_id':tweet.get('in_reply_to_user_id',None),
+            'in_reply_to_status_id':tweet.get('in_reply_to_status_id',None),
+            'created_at':tweet.get('created_at',None),
             'id_users':tweet['user']['id'],
-            'created_at':tweet.get('created_at', None),
-            'in_reply_to_status_id':tweet.get('in_reply_to_status_id', None),
-            'in_reply_to_user_id':tweet.get('in_reply_to_user_id', None),
-            'quoted_status_id':tweet.get('quoted_status_id', None),
             'geo':None,
-            'retweet_count':tweet.get('retweet_count', None),
-            'quote_count':tweet.get('quote_count', None),
-            'favorite_count':tweet.get('favorite_count', None),
-            'withheld_copyright':tweet.get('withheld_copyright', None),
-            'withheld_in_countries':tweet.get('withheld_in_countries', None),
             'place_name':place_name,
             'country_code':country_code,
             'state_code':state_code,
-            'lang':tweet.get('lang', None),
+            'lang':tweet.get('lang',None),
             'text':remove_nulls(text),
-            'source':remove_nulls(tweet.get('source', None))
+            'source':remove_nulls(tweet.get('source',None))
             })
 
         ########################################
