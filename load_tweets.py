@@ -198,11 +198,11 @@ def insert_tweet(connection,tweet):
         # insert the tweet
         sql=sqlalchemy.sql.text(f'''
         INSERT INTO tweets (id_tweets, id_users, created_at, in_reply_status_id,
-            in_reply_to_user_id, quoted_status_id, geo_coords, geo_string, retweet_count,
+            in_reply_to_user_id, quoted_status_id, geo, retweet_count,
             quote_count, favorite_count, withheld_copyright, withheld_in_countries,
             place_name, country_code, state_code, lang, text, source)
         VALUES (:id_tweets, :id_users, :created_at, :in_reply_status_id,
-            :in_reply_to_user_id, :quoted_status_id, :geo_coords, :geo_string, :retweet_count,
+            :in_reply_to_user_id, :quoted_status_id, :geo, :retweet_count,
             :favorite_count, :quote_count, :favorite_count, :withheld_copyright,
             :withheld_in_countries, :place_name, :country_code, :state_code, :lang, :text, :source
             ''')
@@ -214,8 +214,7 @@ def insert_tweet(connection,tweet):
             'in_reply_status_id':tweet.get('in_reply_status_id', None),
             'in_reply_to_user_id':tweet.get('in_reply_to_user_id', None),
             'quoted_status_id':tweet.get('quoted_status_id', None),
-            'geo_coords':None,
-            'geo_string':None,
+            'geo':None,
             'retweet_count':tweet.get('retweet_count', None),
             'quote_count':tweet.get('quote_count', None),
             'favorite_count':tweet.get('favorite_count', None),

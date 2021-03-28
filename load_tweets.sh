@@ -4,7 +4,7 @@ test-data.zip
 
 for file in $files; do
     # call the load_tweets.py file to load data into pg_normalized
-    :
+    ./load_tweets.py --db=postgresql://postgres:pass@localhost:11212/ --inputs=$file
 done
 
 for file in $files; do
